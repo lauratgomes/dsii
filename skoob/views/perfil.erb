@@ -1,0 +1,86 @@
+<% if @erro != nil %>
+  <div class='alert alert-danger' role='alert'>
+    <%= @erro %>
+</div>
+<% end %>
+<div class="container-fluid">
+    <div class="row align-items-center justify-content-center">
+        <div class="col-md-11">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="card">
+                                <img class="card-img-top" src="/uploads/usuarios/<%= @usuario.imagem %>" />
+                                <h5 class="card-title text-center"> <%= @usuario.nome %> </h5>
+                                <div class="card-body">
+                                    <p class="card-text text-justify"> Login: <%= @usuario.login %> </p>
+                                    <p class="card-text text-justify"> Data de Nascimento: <%= @usuario.data_nascimento %> </p>
+                                    <% if (session['login'] != 'admin') %>
+                                    <div class="text-right">
+                                        <a href="/administrador/excluir_usuario/<%=@usuario.id %>"> Excluir </a>
+                                        <a href="/administrador/tela_alterar_usuario/<%=@usuario.id %>"> </span> Editar </a>
+                                    </div>
+                                    <% end %>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-8">
+                            <h5> Meus livros </h5>
+                            <div class="card">
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>Imagem </th>
+                                            <th> ISBN </th>
+                                            <th> Título </th>
+                                            <th> Autor </th>
+                                            <th> Remover </th>
+                                            <th> Resenhas </th>
+                                        </tr>
+                                    </thead>
+                                    <% @usuario.livros.each do |livro| %>
+                                    <tr>
+                                        <% if (livro.capa == nil) %>
+                                        <td>  <img height="100px" width="100px" src="/uploads/livros/0.png" /> </td>
+                                        <% else %>
+                                        <td>  <img height="100px" width="80px" src="/uploads/livros/<%= livro.capa %>" /> </td>
+                                        <% end %>
+                                        <td> <%= livro.isbn %> </td>
+                                        <td> <a href="/administrador/tela_adicionar_resenha/<%=@usuario.id%>/<%= livro.id %>"> <%=livro.titulo %> </a> </td>
+                                        <td> <%= livro.autor %> </td>
+                                        <td> <a href="/administrador/excluir_estante/<%= @usuario.id %>/<%=livro.id %>"> Retirar livro </a> </td>
+                                        <td> <a href="/administrador/resenha_livro/<%= livro.id %>"> Todas as resenhas </a> </td>
+                                    </tr>
+                                    <% end %>
+                                </table>
+                            </div> 
+                            <br />
+                            <div class="col-md-14">
+                                <h5> Minhas resenhas </h5>
+                                <div class="card">
+                                    <table class="table table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th> ISBN </th>
+                                                <th> Resenhas </th>
+                                                <th> Excluir </th>
+                                            </tr>
+                                        </thead>
+                                        <% @usuario.resenhas.each do |resenha| %>
+                                        <tr>
+                                            <td> <%= resenha.livro_id %> </td>
+                                            <td> <%= resenha.texto %> </td>
+                                            <td> <a href="/administrador/excluir_resenha/@usuario.id/<%= resenha.livro_id %>/resenha.id"> Excluir </a> </td>
+                                        </tr>
+                                        <% end %>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

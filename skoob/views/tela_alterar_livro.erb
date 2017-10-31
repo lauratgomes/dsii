@@ -1,0 +1,63 @@
+ <% if @erro != nil %>
+ <div class='alert alert-danger' role='alert'>
+    <%= @erro %>
+</div>
+<% end %>
+<div class="container-fluid">
+    <div class="row align-items-center justify-content-center">
+        <div class="col-lg-6">
+            <div class="card">
+                <div class="card-header card-title">
+                    <h5> Edição do livro: <%= @livro.isbn %> </h5>
+                </div>
+                <div class="card-body">
+                 <form action="/administrador/alterar_livro" method="post" enctype='multipart/form-data'>
+                  <div class="form-group">
+                   Título: <input type="text" name='titulo' class="form-control" value='<%= @livro.titulo %>'>
+               </div>
+               <div class="form-group">
+                   Autor: <input type="text" class="form-control" name="autor" value='<%= @livro.autor %>'>
+               </div>
+               <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label>Ano de publicação: </label>
+                    <input type="date" name="ano_publicacao" class="form-control" value='<%= @livro.ano_publicacao %>' required>
+                </div>
+                <div class="form-group col-md-6">
+                    <label> Páginas: </label>
+                    <input type="number" name="paginas" class="form-control" value="<%= @livro.paginas %>" required>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label> Gênero: </label>
+                    <select name="genero" class="form-control">
+                        <% @vetGenero.each do |genero| %>
+                        <option value="<%=genero.id%>"><%= genero.nome %> </option>
+                        <% end %>
+                    </select>
+                </div>
+                <div class="form-group col-md-6">
+                    <label>Editora: </label>
+                    <select name='editora' class="form-control">
+                        <% @vetEditora.each do |editora| %>
+                        <option value='<%= editora.id %>'> <%= editora.nome %> </option>
+                        <% end %>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label> Capa </label>
+                <input type="file" class="form-control-file" name="capa">
+            </div>
+            <br />
+            <input type="hidden" name='id' value='<%= @livro.id %>'>
+            <div class="text-center">
+                <button type="submit" class="btn btn-secondary btn-block">Enviar</button>
+            </div>
+        </form>
+    </div>
+</div>
+</div>
+</div>
+</div>

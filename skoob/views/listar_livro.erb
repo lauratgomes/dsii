@@ -1,0 +1,69 @@
+ <% if @erro != nil %>
+ <div class='alert alert-danger' role='alert'>
+ 	<%= @erro %>
+ </div>
+ <% end %>
+ <div class='row align-items-center justify-content-center'>
+ 	<div class="col-md-14">
+ 		<div class='card'>
+ 			<div class="card-header card-title">
+ 				<h5 class="text-center"> Livros </h5>
+ 				<form method="post">
+ 					<div class="text-right">
+ 						<input type="text" id="livro" placeholder="Busque pelo título..." onkeypress="buscarLivro(this.value)" />
+ 						<button type="submit" class="btn btn-secondary">Buscar </button>
+ 					</div>
+ 				</form> 
+ 			</div>
+ 			<table class="table table-striped text-center">
+ 				<thead>
+ 					<tr>
+ 						<th> Capa </th>
+ 						<th> ISBN </th>
+ 						<th> Título </th>
+ 						<th> Autor </th>
+ 						<th> Ano de publicação </th>
+ 						<th> Páginas </th>
+ 						<th> Editora </th>
+ 						<th> Gênero </th>
+ 						<th> </th>
+ 						<% if (session['login'] == 'admin') %>
+ 						<th> Excluir </th>
+ 						<th> Editar </th>
+ 						<% end %>
+ 						<th> Resenhas </th>
+ 						<% if (session['login'] != 'admin') %>
+ 						<th> Adicionar resenha </th>
+ 						<% end %>
+ 					</tr>
+ 				</thead>
+
+ 				<% @vetLivro.each do |livro| %>
+ 				<tr>
+ 					<% if (livro.capa == nil) %>
+ 					<td>  <img height="100px" width="100px" src="/uploads/livros/0.png" /> </td>
+ 					<% else %>
+ 					<td>  <img height="180px" width="120px" src="/uploads/livros/<%= livro.capa %>" /> </td>
+ 					<% end %>
+ 					<td> <%= livro.isbn %> </td>
+ 					<td> <b> <%= livro.titulo %> </b> </td>
+ 					<td> <%= livro.autor %> </td>
+ 					<td> <%= livro.ano_publicacao %> </td>
+ 					<td> <%= livro.paginas %> </td>
+ 					<td> <%= livro.editora_id %> </td>
+ 					<td> <%= livro.genero_id %> </td>
+ 					<td> <a href="/administrador/adicionar_estante/<%= session['id'] %>/<%=livro.id %>"> Adicionar à estante </a> </td>
+ 					<% if (session['login'] == 'admin') %>
+ 					<td> <a href="/administrador/excluir_livro/<%=livro.id %>"> <span class="glyphicons glyphicons-bin"></span>Excluir </a> </td>
+ 					<td> <a href="/administrador/tela_alterar_livro/<%=livro.id %>"> <span class="glyphicons glyphicons-pencil"></span> Editar </a> </td>
+ 					<% end %>
+ 					<td> <a href="/administrador/resenha_livro/<%= livro.id %>"> Todas as resenhas </a> </td>
+ 					<% if (session['login'] != 'admin') %>
+ 					<td> <a href="/administrador/tela_adicionar_resenha/<%= session['id']%>/<%=livro.id %>"> Adicionar resenha </a> </td>
+ 					<% end %>
+ 				</tr>
+ 				<% end %>
+ 			</table>
+ 		</div>
+ 	</div>
+ </div>

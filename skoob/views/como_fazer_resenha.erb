@@ -1,0 +1,95 @@
+<!doctype html>
+<html>
+<head>
+  <title></title>
+  <meta charset="UTF-8">
+  <link href="https://fonts.googleapis.com/css?family=Didact+Gothic" rel="stylesheet">
+  <link rel="stylesheet" href="/bootstrap-4.0.0-beta.2-dist/css/bootstrap.min.css" />
+</head>
+<body>
+  <nav id="menu" class="navbar navbar-expand-lg navbar-custom" style="background-color: #C85C43;">
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item"> 
+          <a class="nav-link" href="/administrador/tela_adicionar_genero">Adicionar Gênero</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/administrador/listar_genero">Listar Gênero</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/administrador/tela_adicionar_editora">Adicionar Editora</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/administrador/listar_editora">Listar Editora</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/administrador/tela_adicionar_livro">Adicionar Livro</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/administrador/listar_livro">Listar Livro</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/administrador/listar_resenha">Listar Resenha</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/administrador/tela_adicionar_usuario">Adicionar Usuario</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/administrador/listar_usuario">Listar Usuário</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/administrador/perfil/<%= session['id'] %>">Perfil</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/logout">Sair</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <br />
+  <% if @erro != nil %>
+  <div class='alert alert-danger' role='alert'>
+  <%= @erro %>
+  </div>
+  <% end %>
+  <div class="container-fluid">
+    <div class="row align-items-center justify-content-center">
+      <div class="col-lg-10">
+        <div class="card">
+          <div class="card-header card-title">
+            <h5> Como fazer uma resenha? </h5>
+          </div>
+          <div class="card-body">
+            <p class="card-text text-justify">
+             Não há fórmulas mágicas, macetes ou receitas prontas sobre como fazer uma resenha. Como todos os outros tipos de texto, é alguma coisa que aprendemos por 
+             experiência e erro. Se mesmo assim você não consiga fazer, seguem-se algumas dicas para uma resenha descritiva: <br /> <br />
+             1) Leia o texto que serve de ponto de partida para a resenha. É o primeiro passo e o fundamental. A qualidade da sua resenha depende, em grande medida, 
+             da qualidade da leitura que você fizer desse texto. e necessário, leia mais de uma vez. <br /> <br /> 
+             2) Faça um resumo do texto. Selecione as ideias principais do autor do texto e monte um outro texto, seu. Mas cuidado: resumo não é cópia de alguns trechos do 
+             texto, com as palavras do autor. Resumo é um outro texto, um texto seu, em que você diz o que entendeu do texto, e quais são as ideias principais do autor. Se 
+             você não sabe ainda como resumir um texto, pense em como você o apresentaria para alguém. Outra estratégia interessante é ler o texto em um dia e tentar 
+             resumi-lo alguns dias depois. As ideias de que você conseguir lembrar serão seguramente as principais ideias do autor. Se você não conseguir se lembrar de 
+             nada a respeito do texto, você não o entendeu. Volte ao texto e o leia novamente. <br /> <br />
+             3) Eleja uma entre as principais ideias do texto. Todo texto contém várias ideias, que estão postas em uma hierarquia. Há ideias principais e há ideias
+             secundárias, periféricas. Eleja uma ideia principal. <br /> <br />
+             4) Analise a ideia escolhida. Procure traçar quais são os seus pressupostos, o que o autor pressupõe para formular essa ideia. Procure traçar também as suas implicações, as consequências que se
+             pode retirar dessa ideia. Verifique quais as relações que a ideia estabelece no texto, com quais outras ideias ela dialoga. <br /> <br />
+             5) Emita um julgamento de verdade a respeito dessa ideia. Ela é verdadeira ou não? Se é verdadeira, por quê? Se é falsa, por quê? Procure responder a essas 
+             perguntas com outros argumentos que não os usados pelo autor do texto. Por exemplo, se o autor diz que "ninguém é normal" e usa como argumento a colocação de 
+             que "o conceito de "normal" é muito relativo", não responda que essa ideia é verdadeira porque "o conceito de normal é muito relativo"; você estaria apenas 
+             repetindo o autor do texto. É crucial que o julgamento seja "seu", e não uma mera reprodução do que o autor pensa. Olhe para a maneira como o autor usa os 
+             conceitos, procure definir o que significa "relativo" para o autor e, aí sim, decida. <br /> <br />
+             6) Faça tudo isso antes de começar a redigir o texto. Use um rascunho, se necessário. Apenas depois de resolvidos os passos de 1 a 5 é que você estará pronto 
+             para escrever o texto, e decidir sobre a sua organização. Não há ordem predeterminada: você pode começar o texto pela sua conclusão, e depois explicá-la para 
+             o leitor (através da análise) e terminar por uma apreciação mais genérica do texto (o resumo); ou você pode começar pelo resumo, passar à análise e, em seguida, 
+             ao julgamento; ou você pode misturar as três coisas. É você que decide. O importante é que seu texto tenha organização, e unidade. Enfim, que não seja apenas um 
+             amontoado de parágrafos sobre o texto que está sendo resenhado.
+           </p>
+         </div>
+       </div>
+     </div>
+   </div>
+ </div>
+</body>
+</html>

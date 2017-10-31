@@ -1,0 +1,29 @@
+ <% if @erro != nil %>
+ <div class='alert alert-danger' role='alert'>
+    <%= @erro %>
+</div>
+<% end %>
+<div class="container-fluid">
+    <div class="row align-items-center justify-content-center">
+        <div class="col-lg-8">
+            <div class="card">
+                <div class="card-header card-title">
+                    <h5> Escreva uma Resenha </h5>
+                </div>
+                <div class="card-body">
+                  <form method='post' action='/administrador/adicionar_resenha'>
+                    <div class="form-group">
+                        <textarea class="form-control" name="texto" rows="3"></textarea>
+                        <small class="form-text text-muted"><a href="/administrador/como_fazer_resenha"> Não sabe fazer uma redação? Clique aqui para descobrir </a> </small>
+                    </div>
+                    <input type="hidden" name='usuario' value="<%= @usuario %>">
+                    <input type="hidden" name='livro' value='<%= @livro %>'>
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-secondary btn-block">Enviar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</div>

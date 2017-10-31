@@ -1,0 +1,120 @@
+<!doctype html>
+<html>
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <link href="https://fonts.googleapis.com/css?family=Didact+Gothic" rel="stylesheet">
+    <link rel="stylesheet" href="/bootstrap-4.0.0-beta.2-dist/css/bootstrap.min.css" />
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+
+    <link rel="shortcut icon" href="/uploads/skoob_fav.png"/>
+    <script type="text/javascript">
+        function criaObjetoAjax(){
+            if (window.XMLHttpRequest) {
+                xmlhttp = new XMLHttpRequest();
+            } else {
+                xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+            }
+            return xmlhttp;
+        }   
+
+        function listar_genero(){
+            var xhttp = criaObjetoAjax();
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    document.getElementById('teste').innerHTML = this.responseText;
+                }
+            };
+            xhttp.open("GET", "/administrador/listar_genero", true);                  
+            xhttp.send(); 
+        }
+        
+        function listar_editora(){
+            var xhttp = criaObjetoAjax();
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    document.getElementById('teste').innerHTML = this.responseText;
+                }
+            };
+            xhttp.open("GET", "/administrador/listar_editora", true);                  
+            xhttp.send(); 
+        }
+        
+        function listar_livro(){
+            var xhttp = criaObjetoAjax();
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    document.getElementById('teste').innerHTML = this.responseText;
+                }
+            };
+            xhttp.open("GET", "/administrador/listar_livro", true);                  
+            xhttp.send(); 
+        }
+        
+        function listar_usuario(){
+            var xhttp = criaObjetoAjax();
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    document.getElementById('teste').innerHTML = this.responseText;
+                }
+            };
+            xhttp.open("GET", "/administrador/listar_usuario", true);                  
+            xhttp.send(); 
+        }
+
+        function listar_resenha(){
+            var xhttp = criaObjetoAjax();
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    document.getElementById('teste').innerHTML = this.responseText;
+                }
+            };
+            xhttp.open("GET", "/administrador/listar_resenha", true);                  
+            xhttp.send(); 
+        }
+        
+    </script>
+</head>
+<body>
+    <div id="teste">
+
+        <nav id="menu" class="navbar navbar-expand-lg navbar-custom" style="background-color: #C85C43;">
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <img width="140px" src="/uploads/skoob.png" />
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Adicionar </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a style="color: #C85C43;" class="dropdown-item" id="a_dropdown" href="/administrador/tela_adicionar_genero">Gênero</a>
+                            <a style="color: #C85C43;" class="dropdown-item" id="a_dropdown" href="/administrador/tela_adicionar_editora">Editora</a>
+                            <a style="color: #C85C43;" class="dropdown-item" id="a_dropdown" href="/administrador/tela_adicionar_livro">Livro</a>
+                            <a style="color: #C85C43;" class="dropdown-item" id="a_dropdown" href="/administrador/tela_adicionar_usuario">Usuário</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Listar </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a style="color: #C85C43;" class="dropdown-item" onclick="listar_genero()" id="a_dropdown" href="#">Gênero</a>
+                            <a style="color: #C85C43;" class="dropdown-item" onclick="listar_editora()" id="a_dropdown" href="#">Editora</a>
+                            <a style="color: #C85C43;" class="dropdown-item" onclick="listar_livro()" id="a_dropdown" href="#">Livro</a>
+                            <a style="color: #C85C43;" class="dropdown-item" onclick="listar_usuario()" id="a_dropdown" href="#">Usuário</a>
+                            <a style="color: #C85C43;" class="dropdown-item" onclick="listar_resenha()" id="a_dropdown" href="#">Resenha</a>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/administrador/perfil/<%= session['id'] %>">Perfil</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/logout">Sair</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <br />
+        <%= yield %>
+    </div>
+</body>
+</html>

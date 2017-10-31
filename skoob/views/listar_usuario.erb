@@ -1,0 +1,40 @@
+<div class="container-fluid">
+    <div class="row align-items-center justify-content-center">
+        <div class="col-md-11">
+            <div class="card">
+                <div class="card-header card-title">
+                    <h5> Usuários </h5>
+                    <form>
+                        <div class="text-right">
+                            <input type="text" id="usuario" placeholder="Busque pelo login..." onkeypress="buscarUsuario(this.value)" />
+                            <button type="submit" class="btn btn-secondary">Buscar </button>
+                        </div>
+                    </form> 
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <% @vetUsuario.each do |usuario| %>
+                        <div class="col-md-4">
+                            <div class="card">
+                                <img height="200px" width="200px" class="card-img-top" src="/uploads/usuarios/<%= usuario.imagem %>" />
+                                <h5 class="card-title text-center"> <a style="text-decoration: none; color: #fff;" href="/administrador/perfil/<%=usuario.id%>"> <%= usuario.nome %> </a> </h5>
+                                <div class="card-body">
+                                    <p class="card-text text-justify"> Login: <%= usuario.login %> </p>
+                                    <p class="card-text text-justify"> Data de nascimento: <%= usuario.data_nascimento %> </p>
+                                    <% if (session['login'] == 'admin' || session['id'] == usuario.id) %>
+                                    <div class="text-right">
+                                        <a href="/administrador/excluir_usuario/<%=usuario.id %>"> Excluir </a>
+                                        <a href="/administrador/tela_alterar_usuario/<%=usuario.id %>"> </span> Editar </a>
+                                    </div>
+                                    <% end %>
+                                </div>
+                            </div>
+                            <br />
+                        </div>
+                        <% end %>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

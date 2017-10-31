@@ -1,0 +1,31 @@
+ <% if @erro != nil %>
+ <div class='alert alert-danger' role='alert'>
+    <%= @erro %>
+</div>
+<% end %>
+<div class="container-fluid">
+   <div class="row align-items-center justify-content-center">
+      <div class="col-lg-8">
+         <div class="card">
+            <div class="card-header card-title">
+               <h5> Edição de Resenha </h5>
+           </div>
+           <div class="card-body">
+               <form action="/administrador/alterar_resenha" method="post">
+                  <div class="form-group">
+                     Usuário: <input type="text" name="usuario" class="form-control" value="<%= @resenha.usuario_id %>" disabled>
+                 </div>
+                 <div class="form-group">
+                     Livro: <input type="text" name="livro" class="form-control" value="<%= @resenha.livro_id %>" disabled>
+                 </div>
+                 <div class="form-group">
+                     Texto: <input type="text" name="texto" class="form-control" value="<%= @resenha.texto %>">
+                 </div>
+                 <input type="hidden" name="id" value="<%= @resenha.id %>">
+                 <button type="submit" class="btn btn-secondary btn-lg btn-block">Enviar</button>
+             </form>
+         </div>
+     </div>
+ </div>
+</div>
+</div>

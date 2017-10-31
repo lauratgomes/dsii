@@ -1,0 +1,44 @@
+<div class='container-fluid'>
+  <div class='row align-items-center justify-content-center'>
+    <div class="col-md-11">
+      <div class='card'>
+        <div class="card-header card-title">
+          <h5 class="text-center"> Gêneros </h5>
+          <div class="text-right">
+            <input type="text" id="genero" placeholder="Busque pelo nome..." />
+            <button type="submit" onclick="buscarGenero()" class="btn btn-secondary">Buscar </button>
+          </div> 
+        </div>
+        <table class="table table-striped text-center">
+          <thead>
+           <tr>
+            <th> ID </th>
+            <th> Nome </th>
+            <th> Livros </th>
+            <% if (session['login'] == 'admin') %>
+              <th> Excluir </th>
+              <th> Editar </th>
+            <% end %>
+          </tr>
+        </thead>
+
+        <% @vetGenero.each do |genero| %>
+        <tr>
+          <td> <%= genero.id %> </td>
+          <td> <%= genero.nome %> </td>
+          <td> 
+           <% genero.livros.each do |livro| %>
+            <%= livro.isbn %>  --> <%= livro.titulo %> <br />
+           <% end %> 
+         </td>
+         <% if (session['login'] == 'admin') %>
+           <td> <a href="/administrador/excluir_genero/<%=genero.id %>"> <span class="glyphicons glyphicons-bin"></span>Excluir </a> </td>
+           <td> <a href="/administrador/tela_alterar_genero/<%=genero.id %>"> <span class="glyphicons glyphicons-pencil"></span> Editar </a> </td>
+         <% end %>
+       </tr>
+       <% end %>
+     </table>
+   </div>
+ </div>
+</div>
+</div>

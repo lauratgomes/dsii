@@ -1,0 +1,51 @@
+ <% if @erro != nil %>
+ <div class='alert alert-danger' role='alert'>
+ 	<%= @erro %>
+ </div>
+ <% end %>
+ <div class='container-fluid'>
+ 	<div class='row align-items-center justify-content-center'>
+ 		<div class="col-md-11">
+ 			<div class='card'>
+ 				<div class="card-header card-title">
+ 					<h5 class="text-center"> Editoras </h5>
+ 					<form>
+ 						<div class="text-right">
+ 							<input type="text" id="editora" placeholder="Busque pelo nome..." onkeyup="buscarEditora(this.value)" />
+ 							<button type="submit" class="btn btn-secondary">Buscar </button>
+ 						</div>
+ 					</form> 
+ 				</div>
+ 				<table class="table table-striped text-center">
+ 					<thead>
+ 						<tr>
+ 							<th> ID </th>
+ 							<th> Nome </th>
+ 							<th> Livros </th>
+ 							<% if (session['login'] == 'admin') %>
+ 							<th> Excluir </th>
+ 							<th> Editar </th>
+ 							<% end %>
+ 						</tr>
+ 					</thead>
+
+ 					<% @vetEditora.each do |editora| %>
+ 					<tr>
+ 						<td> <%= editora.id %> </td>
+ 						<td> <%= editora.nome %> </td>
+ 						<td> 
+ 							<% editora.livros do |livro| %>
+ 							<%= livro.isbn %>  --> <%= livro.titulo %> <br />
+ 							<% end %> 
+ 						</td>
+ 						<% if (session['login'] == 'admin') %>
+ 						<td> <a href="/administrador/excluir_editora/<%=editora.id %>"> <span class="glyphicons glyphicons-bin"></span>Excluir </a> </td>
+ 						<td> <a href="/administrador/tela_alterar_editora/<%=editora.id %>"> <span class="glyphicons glyphicons-pencil"></span> Editar </a> </td>
+ 						<% end %>
+ 					</tr>
+ 					<% end %>
+ 				</table>
+ 			</div>
+ 		</div>
+ 	</div>
+ </div>
