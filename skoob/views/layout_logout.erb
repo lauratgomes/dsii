@@ -8,6 +8,7 @@
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
 
     <link rel="shortcut icon" href="/uploads/skoob_fav.png"/>
     <script type="text/javascript">
@@ -62,26 +63,12 @@
             };
             xhttp.open("GET", "/administrador/listar_usuario", true);                  
             xhttp.send(); 
-        }
-
-        function listar_resenha(){
-            var xhttp = criaObjetoAjax();
-            xhttp.onreadystatechange = function() {
-                if (this.readyState == 4 && this.status == 200) {
-                    document.getElementById('teste').innerHTML = this.responseText;
-                }
-            };
-            xhttp.open("GET", "/administrador/listar_resenha", true);                  
-            xhttp.send(); 
-        }
-        
+        }        
     </script>
 </head>
 <body>
     <div id="teste">
-
         <nav id="menu" class="navbar navbar-expand-lg navbar-custom" style="background-color: #C85C43;">
-
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
                     <img width="140px" src="/uploads/skoob.png" />
@@ -101,7 +88,7 @@
                             <a style="color: #C85C43;" class="dropdown-item" onclick="listar_editora()" id="a_dropdown" href="#">Editora</a>
                             <a style="color: #C85C43;" class="dropdown-item" onclick="listar_livro()" id="a_dropdown" href="#">Livro</a>
                             <a style="color: #C85C43;" class="dropdown-item" onclick="listar_usuario()" id="a_dropdown" href="#">Usuário</a>
-                            <a style="color: #C85C43;" class="dropdown-item" onclick="listar_resenha()" id="a_dropdown" href="#">Resenha</a>
+                            <a style="color: #C85C43;" class="dropdown-item" id="a_dropdown" href="/administrador/listar_resenha"> Resenha</a>
                         </div>
                     </li>
                     <li class="nav-item">

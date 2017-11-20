@@ -9,12 +9,6 @@
  			<div class='card'>
  				<div class="card-header card-title">
  					<h5 class="text-center"> Editoras </h5>
- 					<form>
- 						<div class="text-right">
- 							<input type="text" id="editora" placeholder="Busque pelo nome..." onkeyup="buscarEditora(this.value)" />
- 							<button type="submit" class="btn btn-secondary">Buscar </button>
- 						</div>
- 					</form> 
  				</div>
  				<table class="table table-striped text-center">
  					<thead>
@@ -34,7 +28,7 @@
  						<td> <%= editora.id %> </td>
  						<td> <%= editora.nome %> </td>
  						<td> 
- 							<% editora.livros do |livro| %>
+ 							<% editora.livros.each do |livro| %>
  							<%= livro.isbn %>  --> <%= livro.titulo %> <br />
  							<% end %> 
  						</td>

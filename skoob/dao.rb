@@ -46,16 +46,32 @@ class DAO
     rs = @con.exec("SELECT * FROM resenhas WHERE livro_id = $1", [livro])
     rs.each do |resenha_livro|
       resenha = Resenha.new
+     
       resenha.id = resenha_livro['id'].to_i
       resenha.texto = resenha_livro['texto'].to_s
-      resenha.usuario_id = resenha_livro['usuario_id']
-      resenha.livro_id = resenha_livro['livro_id']
+      resenha.usuario_id = Usuario.get(resenha_livro['usuario_id'].to_i)
+      resenha.livro_id = Livro.get(resenha_livro['livro_id'].to_i)
       resenhas.push(resenha)
     end
 
     return resenhas
   end
 
+  def resenhasAll
+    resenhas = []
+    rs = @con.exec("SELECT * FROM resenhas")
+    rs.each do |resenha|
+      resenha2 = Resenha.new
+     
+      resenha2.id = resenha['id'].to_i
+      resenha2.texto = resenha['texto'].to_s
+      resenha2.usuario_id = Usuario.get(resenha['usuario_id'].to_i)
+      resenha2.livro_id = Livro.get(resenha['livro_id'].to_i)
+      resenhas.push(resenha2)
+    end
+
+    return resenhas
+  end
 
   def retornaId_resenha
     rs = @con.exec("SELECT id FROM resenhas ORDER BY id DESC LIMIT 1")

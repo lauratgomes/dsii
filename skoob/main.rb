@@ -41,7 +41,8 @@ before '/administrador/*' do
 	puts session[:senha].nil?
 
 	if (session[:login].nil? && session[:senha].nil?)
-		halt 404, 'Esta página é apenas para pessoas autorizadas. Sinto muito.'
+		@erro = halt 404, 'Esta página é apenas para pessoas autorizadas. Sinto muito.'
+		erb :index
 	end
 end
 
@@ -76,8 +77,12 @@ post '/administrador/alterar_genero' do
 end
 
 get '/administrador/excluir_genero/:id' do
+	adapter = DataMapper.repository(:default).adapter
+	adapter.execute("DELETE FROM genero_livros WHERE genero_id = ?", params['id'].to_i)
+	adapter.execute("DELETE FROM editora_livros WHERE livro_id in (SELECT id FROM livros WHERE genero_id = ?)", params['id'].to_i)	 
+	adapter.execute("DELETE FROM resenhas WHERE livro_id in (SELECT id FROM livros WHERE genero_id = ?)", params['id'].to_i)	 
+	adapter.execute("DELETE FROM livros WHERE genero_id = ?", params['id'].to_i)
 	genero = Genero.get(params['id'].to_i)
-	genero.update(:livros => [])
 	genero.destroy
 	redirect "/administrador/listar_genero"
 end
@@ -362,6 +367,9 @@ get '/administrador/excluir_livro/:id' do
 
 	adapter = DataMapper.repository(:default).adapter
 	adapter.execute("DELETE FROM livro_usuarios WHERE livro_id = ?", livro.id)
+	adapter.execute("DELETE FROM livro_resenhas WHERE livro_id = ?", livro.id)
+	adapter.execute("DELETE FROM resenha_usuarios WHERE resenha_id in (SELECT id FROM resenhas WHERE livro_id = ?)", livro.id)
+	adapter.execute("DELETE FROM resenhas WHERE livro_id = ?", livro.id)
 	livro.destroy
 	redirect "/administrador/listar_livro"
 end
@@ -407,7 +415,7 @@ end
 
 
 get '/administrador/listar_resenha' do
-	@vetResenha = Resenha.all
+	@vetResenha = dao.resenhasAll()
 	erb :listar_resenha, :layout => :layout_logout
 end
 
@@ -463,82 +471,4 @@ end
 get '/administrador/perfil/:id_usuario' do
 	@usuario = Usuario.get(params['id_usuario'].to_i)
 	erb :perfil, :layout => :layout_logout
-end
-
-
-
-
-
-
-
-get '/administrador/buscar_livro/:livro' do
-	@vetLivro = []
-	livro = params['livro'].to_s
-
-	livros = repository(:default).adapter.select("SELECT *
-												  FROM livros
-												  WHERE titulo ILIKE '%{livro}%'
-												  ORDER BY id")
-	livros.each do |livro|
-		@vetLivro.push(livro)
-	end
-	erb :listar_livro
-end
-
-get '/administrador/buscar_genero/:genero' do
-	@vetGenero = []
-	genero = params['genero']
-	puts "????????????????????"
-	puts genero
-	
-	generos = repository(:default).adapter.select("SELECT *
-												  FROM generos
-												  WHERE nome ILIKE '%{genero}%'
-												  ORDER BY id")
-	generos.each do |genero|
-		@vetGenero.push(genero)
-	end
-	erb :listar_genero
-end
-
-get '/administrador/buscar_editora/:editora' do
-	@vetEditora = []
-	editora = params['editora'].to_s
-
-	editora = repository(:default).adapter.select("SELECT *
-												  FROM editoras
-												  WHERE nome ILIKE '%{editora}%'
-												  ORDER BY id")
-	editoras.each do |editora|
-		@vetEditora.push(editora)
-	end
-	erb :listar_editora
-end
-
-get '/administrador/buscar_usuario/:usuario' do
-	@vetUsuario = []
-	usuario = params['usuario'].to_s
-
-	usuarios = repository(:default).adapter.select("SELECT *
-												  FROM usuarios
-												  WHERE login ILIKE '%{usuario}%'
-												  ORDER BY id")
-	usuarios.each do |usuario|
-		@vetUsuario.push(usuario)
-	end
-	erb :listar_usuario
-end
-
-get '/administrador/buscar_resenha/:resenha' do
-	@vetResenha = []
-	resenha = params['resenha'].to_s
-
-	resenhas = repository(:default).adapter.select("SELECT *
-												  FROM resenhas
-												  WHERE texto ILIKE '%{resenha}%'
-												  ORDER BY id")
-	resenhas.each do |resenha|
-		@vetResenha.push(resenha)
-	end
-	erb :listar_resenha
 end

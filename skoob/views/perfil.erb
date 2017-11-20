@@ -71,7 +71,7 @@
                                         <tr>
                                             <td> <%= resenha.livro_id %> </td>
                                             <td> <%= resenha.texto %> </td>
-                                            <td> <a href="/administrador/excluir_resenha/@usuario.id/<%= resenha.livro_id %>/resenha.id"> Excluir </a> </td>
+                                            <td> <a href="/administrador/excluir_resenha/<%=@usuario.id%>/<%= resenha.livro_id %>/<%=resenha.id%>"> Excluir </a> </td>
                                         </tr>
                                         <% end %>
                                     </table>

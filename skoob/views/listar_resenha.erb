@@ -9,12 +9,6 @@
             <div class='card'>
                 <div class="card-header card-title">
                     <h5 class="text-center"> Resenhas </h5>
-                    <form>
-                        <div class="text-right">
-                            <input type="text" id="resenha" placeholder="Busque por uma palavra..." onkeyup="buscarResenha(this.value)" />
-                            <button type="submit" class="btn btn-secondary">Buscar </button>
-                        </div>
-                    </form> 
                 </div>
                 <table class="table table-striped text-center">
                   <thead>
@@ -28,16 +22,16 @@
                 </tr>
             </thead>
             <% @vetResenha.each do |resenha| %>
-            <tr>
-                <td> <%= resenha.id %> </td>
-                <td> <%= resenha.usuario_id %> </td>
-                <td> <%= resenha.livro_id %> </td>
-                <td> <%= resenha.texto %> </td>
-                <% if (session['id'] == resenha.usuario_id || session['login'] == 'admin') %>
-                <td> <a href="/administrador/excluir_resenha/<%=resenha.usuario_id%>/<%=resenha.livro_id%>/<%=resenha.id %>"> <span class="glyphicons glyphicons-bin"></span>Excluir </a> </td>
-                <td> <a href="/administrador/tela_alterar_resenha/<%=resenha.id %>"> <span class="glyphicons glyphicons-pencil"></span> Editar </a> </td>
-                <% end %>
-            </tr>
+                <tr>
+                    <td> <%= resenha.id %> </td>
+                    <td> <%= resenha.usuario_id.nome %> </td>
+                    <td> <%= resenha.livro_id.titulo %> </td>
+                    <td> <%= resenha.texto %> </td>
+                    <% if (session['id'] == resenha.usuario_id || session['login'] == 'admin') %>
+                    <td> <a href="/administrador/excluir_resenha/<%=resenha.usuario_id.id%>/<%=resenha.livro_id.id%>/<%=resenha.id %>"> <span class="glyphicons glyphicons-bin"></span>Excluir </a> </td>
+                    <td> <a href="/administrador/tela_alterar_resenha/<%=resenha.id %>"> <span class="glyphicons glyphicons-pencil"></span> Editar </a> </td>
+                    <% end %>
+                </tr>
             <% end %>
         </table>
     </div>
