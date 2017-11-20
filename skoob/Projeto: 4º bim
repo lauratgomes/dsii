@@ -23,34 +23,6 @@ Exigências:
 - Diagrama ER
 - Esboço das Telas e do Layout (Wireframe)
 
-
-30/10
-Sistema Administrativo (4.0)
-- Controle de sessão de acesso, permissões (ex: somente pessoas cadastradas como administradores podem gerenciar o conteúdo) - OK
-
-Capacidade de inserção de arquivos e conteúdo - OK
-	Telas de alteração com os campos previamente preenchidos - OK
-	Nada de impor ao usuário o conhecimento das chaves primárias ou estrangeiras, ou seja, não é permitido a digitação destes campos - OK
-	
-	CRUD de todas as tabelas. - OK
-	
-	É preciso respeitar e validar os tipos dos campos/colunas
-  		Ex:
-  		- uma data deve só receber datas válidas
-  		- um campo cpf deve só receber cpfs válidos e formatos
-
-Capacidade de Busca de conteúdo por Ajax
-	Tudo é possível se ser persistido
-	login e senha para administradores - OK
-	tudo mapeado com dataMapper e com a aplicação conceitos de orientação a objeto - OK
-
-O sistema administrativo também deve respeitar um layout pré-estabelecido pela etapa do dia 15/09 - OK
-
-
-06/11
-Período de atendimento
-
-
 13/11
 Programa Tkinter (2.0)
 Tem que utilizar Banco
